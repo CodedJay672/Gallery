@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import './Gallery.css';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Loading from '../Loading/Loading';
 
 export default function Gallery({ id, src, alt }) {
   const {
@@ -15,11 +16,20 @@ export default function Gallery({ id, src, alt }) {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+    cursor: 'grab',
+    zIndex: 1,
   };
 
   return (
     <div ref={setNodeRef} {...attributes} {...listeners} style={style} className='p-4 mb-3'>
-      <img src={src} alt={alt} width="200" className='image-fluid rounded float-start' />
+      <LazyLoadImage
+        src={src}
+        width={300}
+        alt={alt}
+        effect="opacity"
+        placeholder={<Loading />}
+        className='image-fluid rounded float-start'
+      />
     </div>
   )
 }

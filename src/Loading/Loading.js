@@ -2,6 +2,8 @@ import React from 'react';
 
 export default function Loading() {
   return (
-    <h2>Loading...</h2>
+    <div className='d-flex justify-content-center align-items-center'>
+      <h2>Loading...</h2>
+    </div>
   );
 }
