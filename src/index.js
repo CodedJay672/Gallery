@@ -2,14 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App/App';
 import {
-  createHashRouter as Router,
+  createBrowserRouter as Router,
   RouterProvider,
 } from 'react-router-dom';
+import Images from './Images/Images';
 
 const router = Router([
   {
     path: '/',
     element: <App />,
+    children: [
+      {
+        index: true,
+        element: <Images />
+      }
+    ]
   },
 ]);
 

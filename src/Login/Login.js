@@ -9,7 +9,14 @@ async function loginUser(credentials) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(credentials)
-    }).then(data => data.json())
+    }).then((res) => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return res.json();
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 }
 
@@ -23,11 +30,14 @@ export default function Login({ setToken }) {
       username,
       password
     });
-    setToken(token);
+
+    if (token) {
+      setToken(token);
+    }
   };
 
   return (
-    <div className="container d-flex flex-column justify-content-center align-items-center">
+    <div className="d-flex justify-content-center align-items-center" style={{height: '100vh'}}>
       <form className="d-flex flex-column justfy-content-center align-items-center" onSubmit={handleSubmit}>
         <h1>LogIn</h1>
         <div className="mb-3">
@@ -55,7 +65,7 @@ export default function Login({ setToken }) {
           />
           <div className="form-text">Enter a valid password.</div>
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary">Log In</button>
       </form>
     </div>
   )

@@ -18,17 +18,19 @@ export default function Gallery({ id, src, alt }) {
     transition,
     cursor: 'grab',
     zIndex: 1,
+    margin: '0.5rem',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    aspectRatio: '1/.7',
   };
 
   return (
-    <div ref={setNodeRef} {...attributes} {...listeners} style={style} className='p-4 mb-3'>
+    <div ref={setNodeRef} {...attributes} {...listeners} style={style} className='d-flex flex-wrap justify-content-center align-items-center'>
       <LazyLoadImage
         src={src}
-        width={300}
+        width="300"
         alt={alt}
-        effect="opacity"
+        effect="blur"
         placeholder={<Loading />}
-        className='image-fluid rounded float-start'
       />
     </div>
   )
