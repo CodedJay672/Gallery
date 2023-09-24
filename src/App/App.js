@@ -1,25 +1,14 @@
-import React, {useState, useEffect } from 'react';
-import Login from '../Login/Login';
-import useToken from '../App/useToken';
+import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-
+import { toast } from 'react-toastify';
 
 const signout = () => {
+  toast.success("Logout successful!");
   sessionStorage.removeItem("token");
   window.location.reload();
 }
 
 export default function App() {
-  const { token, setToken } = useToken();
-
-  if (!token) {
-    return (
-      <>
-        <Login setToken={setToken} />
-      </>
-    )
-  }
-
   return (
     <>
       <nav className='navbar navbar-expand-lg bg-body-tertiary'>

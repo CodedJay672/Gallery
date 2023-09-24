@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 
 async function loginUser(credentials) {
   if (credentials.username === "user@example.com" && credentials.password === "1Password") {
@@ -32,7 +33,10 @@ export default function Login({ setToken }) {
     });
 
     if (token) {
+      toast.success("Login successful!");
       setToken(token);
+    } else {
+      toast.error("Invalid username or password!");
     }
   };
 

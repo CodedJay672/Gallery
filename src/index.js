@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App/App';
+import ReqLogin from './Login/ReqLogin';
 import {
-  createBrowserRouter as Router,
+  createHashRouter as Router,
   RouterProvider,
 } from 'react-router-dom';
 import Images from './Images/Images';
@@ -10,7 +11,10 @@ import Images from './Images/Images';
 const router = Router([
   {
     path: '/',
-    element: <App />,
+    element:
+    <ReqLogin>
+      <App />
+    </ReqLogin>,
     children: [
       {
         index: true,
