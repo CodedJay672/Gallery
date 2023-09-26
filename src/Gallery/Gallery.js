@@ -30,7 +30,7 @@ export default function Gallery({ id, src, alt }) {
         width="300"
         alt={alt}
         effect="blur"
-        placeholder={<Loading />}
+        placeholderSrc={Loading}
       />
     </div>
   )

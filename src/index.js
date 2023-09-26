@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App/App';
+import App, { loader as rootLoader } from './App/App';
 import ReqLogin from './Login/ReqLogin';
+import ErrorPage from './Error/ErrorPage';
 import {
   createHashRouter as Router,
   RouterProvider,
 } from 'react-router-dom';
-import Images from './Images/Images';
 
 const router = Router([
   {
@@ -15,12 +15,8 @@ const router = Router([
     <ReqLogin>
       <App />
     </ReqLogin>,
-    children: [
-      {
-        index: true,
-        element: <Images />
-      }
-    ]
+    loader: rootLoader,
+    errorElement: <ErrorPage />
   },
 ]);
 
