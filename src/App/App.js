@@ -17,6 +17,9 @@ export async function loader({request}) {
   const url = new URL(request.url);
   const param = url.searchParams.get('topic');
   const photos = await getPhotos(param);
+  if (!photos) {
+    throw new Error("Unable to fetch photos");
+  }
   return { photos, param };
 }
 
@@ -34,6 +37,7 @@ export default function App() {
     if (param) {
       setImages(photos);
     } else {
+      setImages(photos);
       navigate("/");
     }
   }, [param])
@@ -42,7 +46,8 @@ export default function App() {
   {/** This function handles the event when the signout option is clicked*/}
   const signout = () => {
     sessionStorage.removeItem("token");
-    window.location = '/';
+    // reload the page
+    window.location.reload();
   }
 
   {/** This function handles the drag event for the images */}
@@ -92,9 +97,10 @@ export default function App() {
               <Gallery key={image.id} id={image.id} src={image.src.landscape} alt={image.alt} />
             ))}
           </SortableContext>
+          {/* This is the overlay that is shown when the image is being dragged */}
           <DragOverlay>
             {activeId ? (
-              <Gallery id={activeId} src={images.find(({ id }) => id === activeId).src.landscape} alt={images.find(({ id }) => id === activeId).alt}/>
+              <Gallery id={activeId} src={images && images.find(({ id }) => id === activeId).src.landscape} alt={images.find(({ id }) => id === activeId).alt}/>
             ) : null}
           </DragOverlay>
         </DndContext>

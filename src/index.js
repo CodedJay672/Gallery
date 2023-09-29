@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App, { loader as rootLoader } from './App/App';
 import ReqLogin from './Login/ReqLogin';
+import Login from './Login/Login';
 import ErrorPage from './Error/ErrorPage';
 import {
   createHashRouter as Router,
@@ -17,6 +18,10 @@ const router = Router([
     </ReqLogin>,
     loader: rootLoader,
     errorElement: <ErrorPage />
+  },
+  {
+    path: '/login',
+    element: <Login />
   },
 ]);
 

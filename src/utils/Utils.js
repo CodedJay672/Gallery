@@ -19,4 +19,4 @@ export const getPhotos = async (param) => {
   } catch (error) {
     console.log("Error fetching photos");
   }
-}
+};
